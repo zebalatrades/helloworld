@@ -1,0 +1,87 @@
+function  TASK7MYSELF(iterations, myaddress, mypassword, emailaddresses, messages)
+% FINANCEGURU makes you become a finance guru. 
+%
+% OUTPUTS: no output, delete the [] and the = 
+%
+% INPUTS:
+%   iterations              number of times the emails are sent
+%   myaddress               the gmail address from which emails are sent
+%   mypassword              password for the gmail address
+%   emailaddresses          a cell containing the email addresses to which we will 
+%                           send the emails
+%   messages                a cell containing the two messages for each group 
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% DO NOT CHANGE THE LINES BELOW
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% set gmail preferences
+setpref('Internet','E_mail',myaddress);
+setpref('Internet','SMTP_Server','smtp.gmail.com');
+setpref('Internet','SMTP_Username',myaddress);
+setpref('Internet','SMTP_Password',mypassword);
+props = java.lang.System.getProperties;
+props.setProperty('mail.smtp.auth','true');
+props.setProperty('mail.smtp.socketFactory.class', ...
+                  'javax.net.ssl.SSLSocketFactory');
+props.setProperty('mail.smtp.socketFactory.port','465');
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% DO NOT CHANGE THE LINES ABOVE! 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% YOUR CODE GOES HERE:
+Population=length(emailaddresses);
+First=round((Population/2));
+Second=[First+1:Population];
+%% sendmail(TO,SUBJECT,MESSAGE,ATTACHMENTS)
+
+for i=1:First
+    GroupA(i)=emailaddresses(1,i);
+end
+GroupA;
+sendmail(GroupA,'Financal Advise',messages(1))
+for i=First+1:Population
+    GroupB(i)=emailaddresses(1,i);
+end
+GroupB;
+sendmail(GroupB,'Financial Advise',messages(2))
+if iterations>1
+for iter=1:iterations
+    ActualStock(i)=rand()
+    if ActualStock>0
+        First2=round((First/2))
+        for  i=1:First2
+            GroupA1(i)=GroupA(1);
+        end
+        GroupA1;
+        for  i=First2+1:GroupA
+            GroupA2(i)=GroupA(i);
+        end
+        GroupA2;
+        sendmail(GroupA1,'Financial Advise',messages(1))
+        sendmail(GroupA2,'Financial Advise',messages(2))
+        X=messages(2)
+    else
+         First2=round((First/2))
+        for  i=1:First2
+            GroupB1(i)=GroupB(i);
+        end
+        GroupA1;
+        for  i=First2+1:GroupA
+            GroupB2(i)=GroupB(i);
+        end
+        GroupB2;
+        sendmail(GroupB1,'Financial Advise',messages(1))
+        sendmail(GroupB2,'Financial Advise',messages(2))
+    end
+end
+else
+    ActualStock=rand()
+    if ActualStock>0
+        AM = strcat('Hello',GroupA,', ','our analysts got it spot on when they said',' ',mesages(1),' ','I am Guru Oscar Contact me for more tips!')'
+        sendmail(GroupA,AM)
+    else
+        BM = strcat('Hello',GroupB,', ','our analysts got it spot on when they said',' ',mesages(2),' ','I am Guru Oscar Contact me for more tips!')'
+    end
+   
+    
+
+end
