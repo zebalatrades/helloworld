@@ -73,7 +73,7 @@ import java.net.*;
 import javax.crypto.*;
 import javax.crypto.spec.*;
 import com.mathworks.mlwidgets.io.InterruptibleStreamCopier;
-url = URL('http://api.twitter.com/1/statuses/update.json');
+url = URL('https://api.twitter.com/1.1/statuses/update.json');
 httpConn = url.openConnection();
 httpConn.setUseCaches (false);
 httpConn.setRequestMethod('POST');
